@@ -1,0 +1,43 @@
+{
+    "name": "pyrus-api",
+    "version": "1.0.1",
+    "description": "Pyrus API client for TypeScript",
+    "type": "module",
+    "main": "./build/cjs/index.js",
+    "module": "./build/esm/index.js",
+    "types": "./build/types/index.d.ts",
+    "exports": {
+        "require": {
+            "default": "./build/cjs/index.cjs"
+        },
+        "import": {
+            "default": "./build/esm/index.js"
+        },
+        "types": {
+            "default": "./build/types/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && tsc --declaration --emitDeclarationOnly ",
+        "prepare": "husky"
+    },
+    "author": {
+        "name": "Pyrus",
+        "email": "contact@pyrus.com"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@types/node": "^22.5.4",
+        "@types/rollup": "^0.54.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "prettier": "2.5.1",
+        "rollup": "^4.21.2",
+        "rollup-plugin-cleandir": "^3.0.0",
+        "rollup-plugin-typescript2": "^0.36.0"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    }
+}
