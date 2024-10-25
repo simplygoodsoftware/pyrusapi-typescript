@@ -1,4 +1,7 @@
-export type PersonIdentity = {
-    id?: number;
-    email?: string;
-};
+export type PersonIdentity =
+    | {
+          id: number;
+      }
+    | {
+          email: string;
+      };

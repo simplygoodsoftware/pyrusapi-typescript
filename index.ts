@@ -60,5 +60,9 @@ export type {FormFieldText} from "./src/entities/formFields/formFieldText";
 export type {FormFieldTime} from "./src/entities/formFields/formFieldTime";
 export type {FormFieldTitle} from "./src/entities/formFields/formFieldTitle";
 
+// bot hook types
+export type {BotHookRequest} from "./src/requests/botHookRequest";
+export type {BotHookResponse} from "./src/responses/botHookResponse";
+
 // client
 export {PyrusApiClient} from "./src/api";
