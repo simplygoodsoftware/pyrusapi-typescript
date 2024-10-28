@@ -6,7 +6,6 @@ import {TaskListRequest} from "../requests/taskListRequest";
 import {TaskListResponse} from "../responses/taskListResponse";
 import {InboxRequest} from "../requests/inboxRequest";
 import {ById} from "../helpers/types";
-import {ResponseBase} from "../responses/responseBase";
 import {CreateListRequest} from "../requests/createListRequest";
 import {PlainListResponse} from "../responses/plainListResponse";
 import {UpdateListRequest} from "../requests/updateListRequest";
@@ -53,7 +52,7 @@ export class ListsApi extends BaseApi {
     }
 
     public async delete(request: ById) {
-        return await this.fetchApi<ResponseBase>(
+        return await this.fetchApi<void>(
             (await this.getModulePath()) + `/${request.id}`,
             "DELETE",
             JSON.stringify(request),

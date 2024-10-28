@@ -4,6 +4,7 @@ export {
     toDateTimeString,
     toTimeString,
 } from "./src/helpers/functions";
+export {ApiError} from "./src/helpers/errors";
 
 // enums
 export {FilterMask} from "./src/enums/filterMask";

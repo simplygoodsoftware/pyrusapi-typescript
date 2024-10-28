@@ -3,7 +3,6 @@ import {Endpoints} from "../settings/endpoints";
 import {CallRequest} from "../requests/callRequest";
 import {CallResponse} from "../responses/callResponse";
 import {AttachCallRecordRequest} from "../requests/attachCallRecordRequest";
-import {ResponseBase} from "../responses/responseBase";
 
 export class CallApi extends BaseApi {
     protected _moduleSubPath = Endpoints.Integrations;
@@ -17,7 +16,7 @@ export class CallApi extends BaseApi {
     }
 
     public async attachCallRecord(request: AttachCallRecordRequest) {
-        return await this.fetchApi<ResponseBase>(
+        return await this.fetchApi<void>(
             (await this.getModulePath()) + Endpoints.AttachCallRecord,
             "POST",
             JSON.stringify(request),

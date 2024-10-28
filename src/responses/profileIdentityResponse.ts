@@ -1,6 +1,4 @@
-import {ResponseBase} from "./responseBase";
-
-export type ProfileIdentityResponse = ResponseBase & {
+export type ProfileIdentityResponse = {
     email: string;
     organization_id: number;
 };

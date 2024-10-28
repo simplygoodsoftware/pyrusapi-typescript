@@ -1,6 +1,5 @@
-import {ResponseBase} from "./responseBase";
 import {Department} from "../entities/department";
 
-export type DepartmentsResponse = ResponseBase & {
+export type DepartmentsResponse = {
     departments: Department[];
 };

@@ -1,6 +1,5 @@
 import {BaseApi} from "./baseApi";
 import {Endpoints} from "../settings/endpoints";
-import {ById} from "../helpers/types";
 import {CreateBotRequest} from "../requests/createBotRequest";
 import {BotResponse} from "../responses/botResponse";
 import {BotsResponse} from "../responses/botsResponse";
@@ -17,13 +16,6 @@ export class BotApi extends BaseApi {
             await this.getModulePath(),
             "POST",
             JSON.stringify(request),
-        );
-    }
-
-    public async get({id}: ById) {
-        return await this.fetchApi<BotResponse>(
-            (await this.getModulePath()) + `/${id}`,
-            "GET",
         );
     }
 

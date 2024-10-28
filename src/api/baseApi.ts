@@ -1,8 +1,9 @@
 import {Settings} from "../entities/settings";
 import {AuthResponse} from "../responses/authResponse";
-import {ResponseBase} from "../responses/responseBase";
+import {ErrorResponse} from "../responses/errorResponse";
 import {HTTPMethod} from "../helpers/types";
 import {extractDates, trimTailingSlash} from "../helpers/functions";
+import {ApiError} from "../helpers/errors";
 
 export interface BaseApiParams {
     token?: string;
@@ -70,7 +71,8 @@ export abstract class BaseApi {
             }
             return await resp.blob();
         } else {
-            return Promise.reject((await resp.json()) as ResponseBase);
+            const error = (await resp.json()) as ErrorResponse;
+            throw new ApiError({code: resp.status, error});
         }
     }
 

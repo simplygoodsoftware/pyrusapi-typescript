@@ -1,5 +1,3 @@
-import {ResponseBase} from "./responseBase";
-
-export type CallResponse = ResponseBase & {
+export type CallResponse = {
     task_id: number;
 };

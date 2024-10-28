@@ -1,6 +1,5 @@
-import {ResponseBase} from "./responseBase";
 import {Role} from "../entities/role";
 
-export type RolesResponse = ResponseBase & {
+export type RolesResponse = {
     roles: Role[];
 };
