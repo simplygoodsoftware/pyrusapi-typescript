@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && tsx module-wrapper.ts",
+        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
         "prepare": "husky"
     },
     "author": {
@@ -40,8 +40,7 @@
         "prettier": "2.5.1",
         "rollup": "^4.21.2",
         "rollup-plugin-cleandir": "^3.0.0",
-        "rollup-plugin-typescript2": "^0.36.0",
-        "tsx": "^4.19.1"
+        "rollup-plugin-typescript2": "^0.36.0"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"

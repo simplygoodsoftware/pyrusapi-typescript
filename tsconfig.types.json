@@ -1,25 +1,4 @@
 {
-    "compilerOptions": {
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "target": "es6",
-        "sourceMap": false,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "noEmitOnError": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitThis": true,
-        "strictFunctionTypes": true,
-        "noImplicitReturns": true,
-        "noImplicitAny": true,
-        "strictBindCallApply": true,
-        "pretty": true,
-        "lib": ["dom", "esnext", "es7", "es2019", "es2021"]
-    },
     "include": ["src", "index.ts"],
     "exclude": ["node_modules", "build"]
 }

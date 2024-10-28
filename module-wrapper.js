@@ -1,7 +1,9 @@
 import fs from "fs";
-import {name as moduleName} from "./package.json";
 
 const DECLARATION_FILE_PATH = "build/types/index.d.ts";
+
+const packageFile = fs.readFileSync("./package.json", {encoding: "utf-8"});
+const {name: moduleName} = JSON.parse(packageFile);
 
 const dtsString = fs.readFileSync(DECLARATION_FILE_PATH, {encoding: "utf-8"});
 const formatted = dtsString.replaceAll(
