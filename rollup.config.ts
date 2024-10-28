@@ -7,8 +7,8 @@ const OUT_DIR = "./build";
 const config: RollupOptions = {
     input: "index.ts",
     output: [
-        {dir: `${OUT_DIR}/cjs`, format: "cjs", entryFileNames: "[name].cjs"},
-        {dir: `${OUT_DIR}/esm`, format: "esm"},
+        {dir: `${OUT_DIR}/cjs`, format: "cjs", entryFileNames: "index.cjs"},
+        {dir: `${OUT_DIR}/esm`, format: "esm", entryFileNames: "index.js"},
     ],
     plugins: [
         cleandir(OUT_DIR),

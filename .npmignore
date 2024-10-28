@@ -1,6 +1,5 @@
 *
 !build/**
-build/types/rollup.config.d.ts
 !README.md
 !package.json
 !LICENSE

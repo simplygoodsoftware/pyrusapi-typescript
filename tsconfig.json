@@ -1,8 +1,5 @@
 {
     "compilerOptions": {
-        "outDir": "build/esm",
-        "declaration": true,
-        "declarationDir": "build/types",
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
