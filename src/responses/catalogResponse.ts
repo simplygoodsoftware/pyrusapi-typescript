@@ -1,10 +1,9 @@
-import {ResponseBase} from "./responseBase";
 import {CatalogHeader} from "../entities/catalogHeader";
 import {ColumnSettings} from "../entities/columnSettings";
 import {SourceType} from "../enums/sourceType";
 import {CatalogItemResponse} from "./catalogItemResponse";
 
-export type CatalogResponse = ResponseBase & {
+export type CatalogResponse = {
     catalog_id: number;
     name: string;
     external_id?: string;
