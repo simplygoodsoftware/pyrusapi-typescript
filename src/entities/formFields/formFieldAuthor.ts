@@ -3,6 +3,6 @@ import {Person} from "../person";
 import {FormFieldType} from "../../enums/formFieldType";
 
 export type FormFieldAuthor = FormFieldBase & {
-    type?: FormFieldType.Author;
+    type?: typeof FormFieldType.Author;
     value?: Person;
 };

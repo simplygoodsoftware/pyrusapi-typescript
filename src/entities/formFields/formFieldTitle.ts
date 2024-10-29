@@ -4,7 +4,7 @@ import {Checkmark} from "../../enums/checkmark";
 import {FormField} from "./formField";
 
 export type FormFieldTitle = FormFieldBase & {
-    type?: FormFieldType.Title;
+    type?: typeof FormFieldType.Title;
     value?: Title;
 };
 

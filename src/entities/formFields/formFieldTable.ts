@@ -3,7 +3,7 @@ import {FormFieldType} from "../../enums/formFieldType";
 import {FormField} from "./formField";
 
 export type FormFieldTable = FormFieldBase & {
-    type?: FormFieldType.Table;
+    type?: typeof FormFieldType.Table;
     value?: TableRow[];
 };
 

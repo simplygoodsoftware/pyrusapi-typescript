@@ -3,6 +3,6 @@ import {FormFieldType} from "../../enums/formFieldType";
 import {Checkmark} from "../../enums/checkmark";
 
 export type FormFieldCheckmark = FormFieldBase & {
-    type?: FormFieldType.Checkmark;
+    type?: typeof FormFieldType.Checkmark;
     value?: Checkmark;
 };
