@@ -4,6 +4,7 @@ import {FormField} from "../entities/formFields/formField";
 import {Channel} from "../entities/channel";
 import {ApprovalChoice} from "../enums/approvalChoice";
 import {PersonIdentity} from "./personIdentity";
+import {IdRequired} from "../helpers/types";
 
 export type TaskCommentRequest = {
     text?: string;
@@ -14,7 +15,7 @@ export type TaskCommentRequest = {
     approval_steps?: number[];
     action?: ActivityAction;
     attachments?: NewFile[];
-    field_updates?: FormField[];
+    field_updates?: (FormField & IdRequired)[];
     approvals_added?: PersonIdentity[][];
     approvals_removed?: PersonIdentity[][];
     approvals_rerequested?: PersonIdentity[][];

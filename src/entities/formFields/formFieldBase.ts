@@ -2,7 +2,7 @@ import {FormFieldType} from "../../enums/formFieldType";
 import {FormFieldInfo} from "../formFieldInfo";
 
 export type FormFieldBase = {
-    id: number;
+    id?: number;
     type?: typeof FormFieldType[keyof typeof FormFieldType];
     name?: string;
     info?: FormFieldInfo;
