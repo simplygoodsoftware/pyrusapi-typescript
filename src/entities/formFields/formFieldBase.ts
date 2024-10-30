@@ -3,7 +3,7 @@ import {FormFieldInfo} from "../formFieldInfo";
 
 export type FormFieldBase = {
     id?: number;
-    type?: typeof FormFieldType[keyof typeof FormFieldType];
+    type?: FormFieldType;
     name?: string;
     info?: FormFieldInfo;
     parent_id?: number;

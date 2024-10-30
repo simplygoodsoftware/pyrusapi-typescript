@@ -25,3 +25,5 @@ export const FormFieldType = {
     FormLink: "form_link",
     DueDateTime: "due_date_time",
 } as const;
+
+export type FormFieldType = typeof FormFieldType[keyof typeof FormFieldType];

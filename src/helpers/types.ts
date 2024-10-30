@@ -3,6 +3,10 @@ export type ById = {
     id: number;
 };
 
-export type IdRequired = {
-    id: number;
-};
+export type IdOrCodeRequired =
+    | {
+          id: number;
+      }
+    | {
+          code: string;
+      };
