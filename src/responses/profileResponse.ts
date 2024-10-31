@@ -1,7 +1,6 @@
-import {ResponseBase} from "./responseBase";
 import {Organization} from "../entities/organization";
 
-export type ProfileResponse = ResponseBase & {
+export type ProfileResponse = {
     person_id: number;
     first_name?: string;
     last_name?: string;

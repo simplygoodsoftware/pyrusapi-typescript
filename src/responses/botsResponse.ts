@@ -1,6 +1,5 @@
-import {ResponseBase} from "./responseBase";
 import {Bot} from "../entities/bot";
 
-export type BotsResponse = ResponseBase & {
+export type BotsResponse = {
     bots: Bot[];
 };

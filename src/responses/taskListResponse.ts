@@ -1,7 +1,6 @@
-import {ResponseBase} from "./responseBase";
 import {TaskHeader} from "../entities/taskHeader";
 
-export type TaskListResponse = ResponseBase & {
+export type TaskListResponse = {
     tasks: TaskHeader[];
     has_more: boolean;
 };

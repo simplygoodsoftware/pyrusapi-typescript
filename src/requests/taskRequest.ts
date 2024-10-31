@@ -1,4 +1,4 @@
-import {FormField} from "../entities/formFields/formField";
+import {FormFieldIdentified} from "../entities/formFields/formField";
 import {NewFile} from "../entities/newFile";
 import {PersonIdentity} from "./personIdentity";
 
@@ -17,7 +17,7 @@ export type TaskRequest = {
     form_id?: number;
     attachments?: NewFile[];
     responsible?: PersonIdentity;
-    fields?: FormField[];
+    fields?: FormFieldIdentified[];
     approvals?: PersonIdentity[][];
     subscribers?: PersonIdentity[];
     participants?: PersonIdentity[];

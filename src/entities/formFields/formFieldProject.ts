@@ -2,7 +2,7 @@ import {FormFieldBase} from "./formFieldBase";
 import {FormFieldType} from "../../enums/formFieldType";
 
 export type FormFieldProject = FormFieldBase & {
-    type?: FormFieldType.Project;
+    type?: typeof FormFieldType.Project;
     value?: ProjectArray;
 };
 

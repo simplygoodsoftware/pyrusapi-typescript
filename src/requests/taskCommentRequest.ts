@@ -1,6 +1,6 @@
 import {ActivityAction} from "../enums/activityAction";
 import {NewFile} from "../entities/newFile";
-import {FormField} from "../entities/formFields/formField";
+import {FormFieldIdentified} from "../entities/formFields/formField";
 import {Channel} from "../entities/channel";
 import {ApprovalChoice} from "../enums/approvalChoice";
 import {PersonIdentity} from "./personIdentity";
@@ -14,7 +14,7 @@ export type TaskCommentRequest = {
     approval_steps?: number[];
     action?: ActivityAction;
     attachments?: NewFile[];
-    field_updates?: FormField[];
+    field_updates?: FormFieldIdentified[];
     approvals_added?: PersonIdentity[][];
     approvals_removed?: PersonIdentity[][];
     approvals_rerequested?: PersonIdentity[][];

@@ -1,6 +1,4 @@
-import {ResponseBase} from "./responseBase";
-
-export type UploadResponse = ResponseBase & {
+export type UploadResponse = {
     guid: string;
     md5_hash: string;
 };

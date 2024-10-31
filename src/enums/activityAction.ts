@@ -1,4 +1,6 @@
-export enum ActivityAction {
-    Finished = "finished",
-    Reopened = "reopened",
-}
+export const ActivityAction = {
+    Finished: "finished",
+    Reopened: "reopened",
+} as const;
+
+export type ActivityAction = typeof ActivityAction[keyof typeof ActivityAction];

@@ -1,8 +1,7 @@
-import {ResponseBase} from "./responseBase";
 import {FormField} from "../entities/formFields/formField";
 import {PrintForm} from "../entities/printForm";
 
-export type FormResponse = ResponseBase & {
+export type FormResponse = {
     id: number;
     name: string;
     steps?: TaskSteps;

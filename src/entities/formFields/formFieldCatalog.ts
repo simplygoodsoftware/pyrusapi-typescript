@@ -2,7 +2,7 @@ import {FormFieldBase} from "./formFieldBase";
 import {FormFieldType} from "../../enums/formFieldType";
 
 export type FormFieldCatalog = FormFieldBase & {
-    type?: FormFieldType.Catalog;
+    type?: typeof FormFieldType.Catalog;
     value?: Catalog;
 };
 

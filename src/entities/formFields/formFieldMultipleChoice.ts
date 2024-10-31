@@ -3,7 +3,7 @@ import {FormFieldType} from "../../enums/formFieldType";
 import {FormField} from "./formField";
 
 export type FormFieldMultipleChoice = FormFieldBase & {
-    type?: FormFieldType.MultipleChoice;
+    type?: typeof FormFieldType.MultipleChoice;
     value?: MultipleChoice;
 };
 

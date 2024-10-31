@@ -1,7 +1,6 @@
-import {ResponseBase} from "./responseBase";
 import {TaskWithComments} from "../entities/TaskWithComments";
 
-export type CalendarResponse = ResponseBase & {
+export type CalendarResponse = {
     tasks: TaskWithComments[];
     has_more: boolean;
 };

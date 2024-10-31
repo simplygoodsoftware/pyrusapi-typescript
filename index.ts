@@ -4,6 +4,7 @@ export {
     toDateTimeString,
     toTimeString,
 } from "./src/helpers/functions";
+export {ApiError} from "./src/helpers/errors";
 
 // enums
 export {FilterMask} from "./src/enums/filterMask";
@@ -59,6 +60,10 @@ export type {FormFieldTable} from "./src/entities/formFields/formFieldTable";
 export type {FormFieldText} from "./src/entities/formFields/formFieldText";
 export type {FormFieldTime} from "./src/entities/formFields/formFieldTime";
 export type {FormFieldTitle} from "./src/entities/formFields/formFieldTitle";
+export type {
+    FormField,
+    FormFieldIdentified,
+} from "./src/entities/formFields/formField";
 
 // bot hook types
 export type {BotHookRequest} from "./src/requests/botHookRequest";

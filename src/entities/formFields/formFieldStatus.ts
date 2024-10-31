@@ -3,6 +3,6 @@ import {FormFieldType} from "../../enums/formFieldType";
 import {Status} from "../../enums/status";
 
 export type FormFieldStatus = FormFieldBase & {
-    type?: FormFieldType.Status;
+    type?: typeof FormFieldType.Status;
     value?: Status;
 };

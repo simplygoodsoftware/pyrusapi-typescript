@@ -23,6 +23,7 @@ import {FormFieldTable} from "./formFieldTable";
 import {FormFieldText} from "./formFieldText";
 import {FormFieldTime} from "./formFieldTime";
 import {FormFieldTitle} from "./formFieldTitle";
+import {IdOrCodeRequired} from "../../helpers/types";
 
 export type FormField =
     | FormFieldAuthor
@@ -50,3 +51,5 @@ export type FormField =
     | FormFieldText
     | FormFieldTime
     | FormFieldTitle;
+
+export type FormFieldIdentified = FormField & IdOrCodeRequired;

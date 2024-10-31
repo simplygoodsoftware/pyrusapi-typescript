@@ -1,6 +1,5 @@
-import {ResponseBase} from "./responseBase";
 import {TaskList} from "../entities/taskList";
 
-export type ListsResponse = ResponseBase & {
+export type ListsResponse = {
     lists: TaskList[];
 };
