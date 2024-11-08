@@ -9,6 +9,7 @@ import {ById} from "../helpers/types";
 import {CreateListRequest} from "../requests/createListRequest";
 import {PlainListResponse} from "../responses/plainListResponse";
 import {UpdateListRequest} from "../requests/updateListRequest";
+import { ListResponse } from "../responses/listResponse";
 
 export class ListsApi extends BaseApi {
     protected _moduleSubPath = Endpoints.Lists;
@@ -48,6 +49,14 @@ export class ListsApi extends BaseApi {
             await this.getModulePath(),
             "PUT",
             JSON.stringify(request),
+        );
+    }
+
+    public async get(listId: number) {
+        return await this.fetchApi<ListResponse>(
+            (await this.getModulePath()) +
+            `${listId}`,
+            "GET",
         );
     }
 
