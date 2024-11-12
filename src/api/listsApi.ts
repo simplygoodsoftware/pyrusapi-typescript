@@ -52,10 +52,10 @@ export class ListsApi extends BaseApi {
         );
     }
 
-    public async get(listId: number) {
+    public async get(request: ById) {
         return await this.fetchApi<ListResponse>(
             (await this.getModulePath()) +
-            `${listId}`,
+            `/${request.id}`,
             "GET",
         );
     }
