@@ -2,7 +2,7 @@ import {Settings} from "../entities/settings";
 import {AuthResponse} from "../responses/authResponse";
 import {ErrorResponse} from "../responses/errorResponse";
 import {HTTPMethod} from "../helpers/types";
-import {extractDates, trimTailingSlash} from "../helpers/functions";
+import {fromJson, trimTrailingSlash} from "../helpers/functions";
 import {ApiError} from "../helpers/errors";
 
 export interface BaseApiParams {
@@ -33,8 +33,8 @@ export abstract class BaseApi {
         const {access_token, api_url, files_url} = await this._authRequest;
         this._token = access_token;
         if (api_url && files_url) {
-            this._settings.apiUrl = trimTailingSlash(api_url);
-            this._settings.filesUrl = trimTailingSlash(files_url);
+            this._settings.apiUrl = trimTrailingSlash(api_url);
+            this._settings.filesUrl = trimTrailingSlash(files_url);
         } else {
             this._settings.apiUrl =
                 this._settings.apiUrl ?? this._settings.authUrl;
@@ -67,7 +67,7 @@ export abstract class BaseApi {
         if (resp.ok) {
             const contentType = resp.headers.get("Content-Type");
             if (contentType && contentType.includes("application/json")) {
-                return JSON.parse(await resp.text(), extractDates);
+                return fromJson(await resp.text());
             }
             return await resp.blob();
         } else {

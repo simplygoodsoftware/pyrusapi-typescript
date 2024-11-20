@@ -18,6 +18,7 @@ import {FormsApi} from "./formsApi";
 import {LogsApi} from "./logsApi";
 import {CallApi} from "./callApi";
 import {BotApi} from "./botApi";
+import {trimTrailingSlash} from "../helpers/functions";
 
 export class PyrusApiClient extends BaseApi {
     private _role: RoleApi;
@@ -44,7 +45,7 @@ export class PyrusApiClient extends BaseApi {
      */
     constructor(auth: AuthRequest | string, settings?: Settings) {
         const currentSettings = !!settings
-            ? {...defaults, ...settings}
+            ? PyrusApiClient.extendDefaults(settings)
             : defaults;
 
         super({settings: currentSettings});
@@ -61,6 +62,20 @@ export class PyrusApiClient extends BaseApi {
                 "Content-Type": "application/json",
             },
         );
+    }
+
+    private static extendDefaults(settings: Settings) {
+        const extendedSettings = {...defaults, ...settings};
+        const needTrimKeys: (keyof Settings)[] = [
+            "apiUrl",
+            "authUrl",
+            "filesUrl",
+        ];
+
+        for (const key of needTrimKeys) {
+            extendedSettings[key] = trimTrailingSlash(extendedSettings[key]);
+        }
+        return extendedSettings;
     }
 
     private get initParams(): BaseApiParams {

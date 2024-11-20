@@ -3,6 +3,8 @@ export {
     toDateString,
     toDateTimeString,
     toTimeString,
+    toJson,
+    fromJson,
 } from "./src/helpers/functions";
 export {ApiError} from "./src/helpers/errors";
 
