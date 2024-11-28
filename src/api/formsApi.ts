@@ -5,7 +5,7 @@ import {FormResponse} from "../responses/formResponse";
 import {FormsResponse} from "../responses/formsResponse";
 import {FormRegisterRequest} from "../requests/formRegisterRequest";
 import {FormRegisterResponse} from "../responses/formRegisterResponse";
-import {packDates, processFilters} from "../helpers/functions";
+import {processFilters, toJson} from "../helpers/functions";
 import {PermissionsResponse} from "../responses/permissionsResponse";
 import {ChangePermissionsRequest} from "../requests/changePermissionsRequest";
 
@@ -38,7 +38,7 @@ export class FormsApi extends BaseApi {
         >(
             (await this.getModulePath()) + `/${id}` + Endpoints.FormsRegister,
             "POST",
-            JSON.stringify(processedRequest, packDates),
+            toJson(processedRequest),
         );
     }
 

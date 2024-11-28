@@ -3,7 +3,7 @@ import {Endpoints} from "../settings/endpoints";
 import {ById} from "../helpers/types";
 import {TaskResponse} from "../responses/taskResponse";
 import {TaskRequest} from "../requests/taskRequest";
-import {packDates} from "../helpers/functions";
+import {toJson} from "../helpers/functions";
 import {TaskCommentRequest} from "../requests/taskCommentRequest";
 
 export class TasksApi extends BaseApi {
@@ -26,7 +26,7 @@ export class TasksApi extends BaseApi {
         return await this.fetchApi<TaskResponse>(
             await this.getModulePath(),
             "POST",
-            JSON.stringify(request, packDates),
+            toJson(request),
         );
     }
 
@@ -34,7 +34,7 @@ export class TasksApi extends BaseApi {
         return await this.fetchApi<TaskResponse>(
             (await this.getModulePath()) + `/${id}` + Endpoints.TasksComments,
             "POST",
-            JSON.stringify(request, packDates),
+            toJson(request),
         );
     }
 }

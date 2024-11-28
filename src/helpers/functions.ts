@@ -68,7 +68,15 @@ export function packDates(key: string, value: any) {
     return value;
 }
 
-export function trimTailingSlash(url: string) {
+export function toJson(obj: any) {
+    return JSON.stringify(obj, packDates);
+}
+
+export function fromJson<T = any>(str: string) {
+    return JSON.parse(str, extractDates) as T;
+}
+
+export function trimTrailingSlash(url: string) {
     return url.endsWith("/") ? url.slice(0, -1) : url;
 }
 
