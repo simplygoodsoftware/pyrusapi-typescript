@@ -1,6 +1,6 @@
 {
     "name": "pyrus-api",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Pyrus API client for TypeScript",
     "repository": {
         "type": "git",

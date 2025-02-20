@@ -1,7 +1,7 @@
 import {TaskResponse} from "../responses/taskResponse";
 
 export type BotHookRequest = TaskResponse & {
-    event: "Comment" | "Close";
+    event: "comment" | "close";
     access_token: string;
     user_id: number;
     bot_settings: string;
