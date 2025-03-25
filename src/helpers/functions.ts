@@ -9,6 +9,7 @@ import {
 } from "./constants";
 import {FormFilter} from "../requests/formFilter";
 import {OperatorId} from "../enums/operatorId";
+import {CatalogHeader} from "../entities/catalogHeader";
 
 export function toSearchParams(request: object) {
     return (
@@ -126,4 +127,12 @@ export function processFilters(filters: FormFilter[] | undefined) {
 
         return prev;
     }, {});
+}
+
+export function prepareHeadersForCatalogApiRequest(
+    headers: string[] | CatalogHeader[],
+): string[] {
+    return headers.map((header) =>
+        typeof header === "string" ? header : header.name,
+    );
 }

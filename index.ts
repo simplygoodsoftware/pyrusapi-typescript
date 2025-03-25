@@ -5,6 +5,7 @@ export {
     toTimeString,
     toJson,
     fromJson,
+    prepareHeadersForCatalogApiRequest,
 } from "./src/helpers/functions";
 export {ApiError} from "./src/helpers/errors";
 
