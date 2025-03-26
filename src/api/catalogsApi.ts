@@ -4,8 +4,12 @@ import {ById} from "../helpers/types";
 import {CatalogsResponse} from "../responses/catalogsResponse";
 import {CatalogResponse} from "../responses/catalogResponse";
 import {CreateCatalogRequest} from "../requests/createCatalogRequest";
-import {SyncCatalogRequest} from "../requests/syncCatalogRequest";
+import {
+    SyncCatalogRequest,
+    SyncCatalogRequestApi,
+} from "../requests/syncCatalogRequest";
 import {SyncCatalogResponse} from "../responses/syncCatalogResponse";
+import {prepareHeadersForCatalogApiRequest} from "../helpers/functions";
 
 export class CatalogsApi extends BaseApi {
     protected _moduleSubPath = Endpoints.Catalogs;
@@ -40,10 +44,17 @@ export class CatalogsApi extends BaseApi {
      * @param request
      */
     public async sync(request: SyncCatalogRequest) {
+        const apiRequest: SyncCatalogRequestApi = {
+            ...request,
+            catalog_headers: prepareHeadersForCatalogApiRequest(
+                request.catalog_headers,
+            ),
+        };
+
         return await this.fetchApi<SyncCatalogResponse>(
             (await this.getModulePath()) + `/${request.id}`,
             "POST",
-            JSON.stringify(request),
+            JSON.stringify(apiRequest),
         );
     }
 }
