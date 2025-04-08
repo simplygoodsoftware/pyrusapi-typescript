@@ -23,5 +23,6 @@ export type Task = TaskHeader & {
     parent_task_id?: number;
     last_note_id?: number;
     subject?: string;
+    current_step?: number;
     is_closed: boolean;
 };
