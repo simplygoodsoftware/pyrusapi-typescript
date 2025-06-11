@@ -1,3 +1,5 @@
+import {UpdateCatalogRequest} from "../requests/updateCatalogRequest";
+import {UpdateCatalogResponse} from "../responses/updateCatalogResponse";
 import {BaseApi} from "./baseApi";
 import {Endpoints} from "../settings/endpoints";
 import {ById} from "../helpers/types";
@@ -55,6 +57,22 @@ export class CatalogsApi extends BaseApi {
             (await this.getModulePath()) + `/${request.id}`,
             "POST",
             JSON.stringify(apiRequest),
+        );
+    }
+
+    /**
+     *  This method allows you to insert new catalog items, modify or delete existing ones.
+     *  The first column of the catalog is the key parameter.
+     *  To insert or modify a row (also called as upsert) please pass an array of values for each item.
+     *  To delete items you need only an array of keys
+     *
+     * @param request
+     */
+    public async update(request: UpdateCatalogRequest) {
+        return await this.fetchApi<UpdateCatalogResponse>(
+            (await this.getModulePath()) + `/${request.id}/diff`,
+            "POST",
+            JSON.stringify(request),
         );
     }
 }
