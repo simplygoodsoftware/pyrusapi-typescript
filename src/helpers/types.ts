@@ -1,12 +1,13 @@
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE";
-export type ById = {
+
+export type IdRequired = {
     id: number;
 };
 
-export type IdOrCodeRequired =
-    | {
-          id: number;
-      }
-    | {
-          code: string;
-      };
+type CodeRequired = {
+    code: string;
+};
+
+export type ById = IdRequired;
+
+export type IdOrCodeRequired = IdRequired | CodeRequired;
