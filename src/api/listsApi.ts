@@ -9,7 +9,8 @@ import {ById} from "../helpers/types";
 import {CreateListRequest} from "../requests/createListRequest";
 import {PlainListResponse} from "../responses/plainListResponse";
 import {UpdateListRequest} from "../requests/updateListRequest";
-import { ListResponse } from "../responses/listResponse";
+import {ListResponse} from "../responses/listResponse";
+import {InboxResponse} from "../responses/inboxResponse";
 
 export class ListsApi extends BaseApi {
     protected _moduleSubPath = Endpoints.Lists;
@@ -38,7 +39,7 @@ export class ListsApi extends BaseApi {
 
         const searchParams = request ? toSearchParams(request) : "";
 
-        return await this.fetchApi<TaskListResponse>(
+        return await this.fetchApi<InboxResponse>(
             this._settings.apiUrl + Endpoints.Inbox + searchParams,
             "GET",
         );
@@ -54,8 +55,7 @@ export class ListsApi extends BaseApi {
 
     public async get(request: ById) {
         return await this.fetchApi<ListResponse>(
-            (await this.getModulePath()) +
-            `/${request.id}`,
+            (await this.getModulePath()) + `/${request.id}`,
             "GET",
         );
     }
