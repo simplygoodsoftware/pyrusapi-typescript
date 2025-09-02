@@ -5,7 +5,6 @@ import {
     dateRequestKeys,
     dateTimeFieldTypes,
     dateTimeRequestKeys,
-    timeFieldTypes,
 } from "./constants";
 import {FormFilter} from "../requests/formFilter";
 import {OperatorId} from "../enums/operatorId";
@@ -60,10 +59,6 @@ export function packDates(key: string, value: any) {
             value.value = toDateString(value.value);
             return value;
         }
-        if (timeFieldTypes.includes(value.type)) {
-            value.value = toTimeString(value.value);
-            return value;
-        }
     }
 
     return value;
@@ -91,10 +86,6 @@ export function toDateString(date: Date | string): string {
     return date.split("T")[0];
 }
 
-export function toTimeString(date: Date | string): string {
-    if (typeof date !== "string") date = date.toISOString();
-    return date.split("T")[1].slice(0, 5);
-}
 type Filters = {
     [index: string]: string;
 };
