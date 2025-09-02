@@ -5,11 +5,9 @@ export const dateTimeFieldTypes = [
     FormFieldType.CreationDate,
 ];
 export const dateFieldTypes = [FormFieldType.Date, FormFieldType.DueDate];
-export const timeFieldTypes = [FormFieldType.Time];
 export const allDateAndTimeFieldTypes = [
     ...dateFieldTypes,
     ...dateTimeFieldTypes,
-    ...timeFieldTypes,
 ];
 
 export const allDateAndTimeResponseKeys = [
