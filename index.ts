@@ -2,6 +2,7 @@
 export {
     toDateString,
     toDateTimeString,
+    toTimeString,
     toJson,
     fromJson,
     prepareHeadersForCatalogApiRequest,
