@@ -88,6 +88,7 @@ import {ApprovalChoice} from "pyrus-api";
 ```typescript
 const taskId = 2512;
 const fieldToAdd: FormFieldTable = {
+	id: 1,
     type: FormFieldType.Table,
     value: [
         {
@@ -98,7 +99,8 @@ const fieldToAdd: FormFieldTable = {
                     name: "Comment",
                     value: "That's right"
                 }
-            ]
+            ],
+			position: 1
         }
     ]
 };

@@ -6,4 +6,5 @@ export enum OperatorId {
     Range = 5,
     MatchPrefix = 6,
     IsEmpty = 7,
+    Exists = 8,
 }

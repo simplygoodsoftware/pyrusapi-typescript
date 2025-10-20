@@ -117,6 +117,9 @@ export function processFilters(filters: FormFilter[] | undefined) {
             case OperatorId.IsEmpty:
                 prev[`fld${field_id}`] = "empty";
                 break;
+            case OperatorId.Exists:
+                prev[`fld${field_id}`] = "*";
+                break;
             default:
                 return prev;
         }

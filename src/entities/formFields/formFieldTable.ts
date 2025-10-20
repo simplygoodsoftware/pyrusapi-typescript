@@ -12,4 +12,5 @@ type TableRow = {
     cells?: FormField[];
     delete?: boolean;
     deleted?: boolean;
+    position?: number;
 };
