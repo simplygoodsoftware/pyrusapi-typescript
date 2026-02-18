@@ -20,6 +20,7 @@ export const ChannelType = {
     WhatsApp: "whats_app",
     Custom: "custom",
     Sms: "sms",
+    MaxMessenger: "max_messenger",
 } as const;
 
 export type ChannelType = typeof ChannelType[keyof typeof ChannelType];
