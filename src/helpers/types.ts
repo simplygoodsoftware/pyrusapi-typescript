@@ -14,4 +14,6 @@ export type NameRequired = {
 
 export type ById = IdRequired;
 
+export type IdOrCodeRequired = IdRequired | CodeRequired;
+
 export type FormFieldIdentifier = IdRequired | CodeRequired | NameRequired;
