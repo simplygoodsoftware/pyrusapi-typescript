@@ -37,4 +37,5 @@ export type TaskCommentRequest = {
     skip_satisfaction?: boolean;
     edit_comment_id?: number;
     skip_notification?: boolean;
+    skip_auto_reopen?: boolean;
 };
