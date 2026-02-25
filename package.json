@@ -1,6 +1,6 @@
 {
     "name": "pyrus-api",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "description": "Pyrus API client for TypeScript",
     "repository": {
         "type": "git",
@@ -22,7 +22,8 @@
         }
     },
     "scripts": {
-        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js"
+        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
+        "check:version": "node .husky/check-version.mjs"
     },
     "author": {
         "name": "Pyrus",

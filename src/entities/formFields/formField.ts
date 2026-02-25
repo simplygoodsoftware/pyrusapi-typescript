@@ -23,9 +23,13 @@ import {FormFieldTable} from "./formFieldTable";
 import {FormFieldText} from "./formFieldText";
 import {FormFieldTime} from "./formFieldTime";
 import {FormFieldTitle} from "./formFieldTitle";
-import {IdOrCodeRequired, IdRequired} from "../../helpers/types";
+import {
+    FormFieldIdentifier,
+    IdRequired,
+    NameRequired,
+} from "../../helpers/types";
 
-type FormFieldCommon =
+export type FormFieldCommon =
     | FormFieldAuthor
     | FormFieldCatalog
     | FormFieldCheckmark
@@ -52,6 +56,8 @@ type FormFieldCommon =
     | FormFieldTime
     | FormFieldTitle;
 
-export type FormField = FormFieldCommon & IdRequired;
+type IdAndNameRequired = IdRequired & NameRequired;
 
-export type FormFieldIdentified = FormFieldCommon & IdOrCodeRequired;
+export type FormField = FormFieldCommon & IdAndNameRequired;
+
+export type FormFieldIdentified = FormFieldCommon & FormFieldIdentifier;

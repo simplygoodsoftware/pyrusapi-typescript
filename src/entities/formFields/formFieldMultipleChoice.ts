@@ -1,6 +1,6 @@
 import {FormFieldBase} from "./formFieldBase";
 import {FormFieldType} from "../../enums/formFieldType";
-import {FormField} from "./formField";
+import {FormFieldCommon} from "./formField";
 
 export type FormFieldMultipleChoice = FormFieldBase & {
     type?: typeof FormFieldType.MultipleChoice;
@@ -11,5 +11,5 @@ type MultipleChoice = {
     choice_id?: number;
     choice_ids?: number[];
     choice_names?: string[];
-    fields?: FormField[];
+    fields?: FormFieldCommon[];
 };
