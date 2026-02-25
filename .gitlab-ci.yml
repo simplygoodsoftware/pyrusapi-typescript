@@ -21,7 +21,7 @@ publish-to-npm:
     dependencies:
         - build-library
     only:
-        - master
+        - main
     when: manual
     before_script:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
