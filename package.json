@@ -4,7 +4,7 @@
     "description": "Pyrus API client for TypeScript",
     "repository": {
         "type": "git",
-        "url": "https://github.com/simplygoodsoftware/pyrusapi-typescript.git"
+        "url": "git+https://github.com/simplygoodsoftware/pyrusapi-typescript.git"
     },
     "type": "module",
     "main": "./build/cjs/index.js",
@@ -22,8 +22,7 @@
         }
     },
     "scripts": {
-        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
-        "prepare": "husky"
+        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js"
     },
     "author": {
         "name": "Pyrus",

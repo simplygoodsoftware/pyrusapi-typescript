@@ -11,6 +11,8 @@ build-library:
         - npm run build
     artifacts:
         paths:
+            - node_modules/
+            - .npm/
             - build/
         expire_in: 1 week
 
@@ -18,7 +20,20 @@ publish-to-npm:
     stage: publish
     dependencies:
         - build-library
+    only:
+        - master
     when: manual
-    script:
+    before_script:
         - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    script:
+        - npm publish
+
+publish-to-npm-dry-run:
+    stage: publish
+    dependencies:
+        - build-library
+    when: manual
+    before_script:
+        - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    script:
         - npm publish --dry-run
