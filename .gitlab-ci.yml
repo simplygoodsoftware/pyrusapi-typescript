@@ -11,6 +11,8 @@ build-library:
         - npm run build
     artifacts:
         paths:
+            - node_modules/
+            - .npm/
             - build/
         expire_in: 1 week
 
