@@ -10,7 +10,7 @@ import {FormFilter} from "../requests/formFilter";
 import {OperatorId} from "../enums/operatorId";
 import {CatalogHeader} from "../entities/catalogHeader";
 
-export function toSearchParams(request: object) {
+export function toSearchParams(request: object): string {
     return (
         "?" +
         new URLSearchParams(
@@ -64,15 +64,15 @@ export function packDates(key: string, value: any) {
     return value;
 }
 
-export function toJson(obj: any) {
+export function toJson(obj: any): string {
     return JSON.stringify(obj, packDates);
 }
 
-export function fromJson<T = any>(str: string) {
+export function fromJson<T = any>(str: string): T {
     return JSON.parse(str, extractDates) as T;
 }
 
-export function trimTrailingSlash(url: string) {
+export function trimTrailingSlash(url: string): string {
     return url.endsWith("/") ? url.slice(0, -1) : url;
 }
 
@@ -94,7 +94,7 @@ export function toTimeString(date: Date | string): string {
 type Filters = {
     [index: string]: string;
 };
-export function processFilters(filters: FormFilter[] | undefined) {
+export function processFilters(filters: FormFilter[] | undefined): Filters {
     if (!filters) return {};
     return filters.reduce((prev: Filters, {operator_id, values, field_id}) => {
         switch (operator_id) {
