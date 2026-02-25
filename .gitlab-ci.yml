@@ -1,0 +1,24 @@
+image: node:24-alpine
+
+stages:
+    - build
+    - publish
+
+build-library:
+    stage: build
+    script:
+        - npm ci
+        - npm run build
+    artifacts:
+        paths:
+            - build/
+        expire_in: 1 week
+
+publish-to-npm:
+    stage: publish
+    dependencies:
+        - build-library
+    when: manual
+    script:
+        - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+        - npm publish --dry-run
