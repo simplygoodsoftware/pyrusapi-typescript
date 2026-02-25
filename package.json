@@ -22,7 +22,8 @@
         }
     },
     "scripts": {
-        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js"
+        "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
+        "check:version": "node .husky/check-version.mjs"
     },
     "author": {
         "name": "Pyrus",
