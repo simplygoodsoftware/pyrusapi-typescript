@@ -1,7 +1,12 @@
 {
     "name": "pyrus-api",
-    "version": "3.3.2",
     "description": "Pyrus API client for TypeScript",
+    "version": "3.3.2",
+    "author": {
+        "name": "Pyrus",
+        "email": "contact@pyrus.com"
+    },
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/simplygoodsoftware/pyrusapi-typescript.git"
@@ -23,13 +28,9 @@
     },
     "scripts": {
         "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
+        "tsc": "tsc --noEmit",
         "check:version": "node .husky/check-version.mjs"
     },
-    "author": {
-        "name": "Pyrus",
-        "email": "contact@pyrus.com"
-    },
-    "license": "MIT",
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.6",
         "@types/node": "^22.5.4",
@@ -38,9 +39,10 @@
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10",
         "prettier": "2.5.1",
-        "rollup": "^4.21.2",
+        "rollup": "4.59.0",
         "rollup-plugin-cleandir": "^3.0.0",
-        "rollup-plugin-typescript2": "^0.36.0"
+        "rollup-plugin-typescript2": "^0.36.0",
+        "typescript": "^5.9.3"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
