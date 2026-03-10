@@ -1,2 +1,2 @@
-npx lint-staged
+./node_modules/.bin/lint-staged
 node ./.husky/check-version.mjs
