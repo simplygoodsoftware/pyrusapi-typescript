@@ -42,12 +42,12 @@ export function extractDates(key: string, value: any) {
     return value;
 }
 
-export function packDates(key: string, value: any) {
+export function packDates(this: any, key: string, value: any) {
     if (dateRequestKeys.includes(key)) {
-        return value && toDateString(value);
+        return this[key] && toDateString(this[key]);
     }
     if (dateTimeRequestKeys.includes(key)) {
-        return value && toDateTimeString(value);
+        return this[key] && toDateTimeString(this[key]);
     }
     // if Field
     if (value instanceof Object && value.type && value.value) {
@@ -78,16 +78,22 @@ export function trimTrailingSlash(url: string): string {
 
 export function toDateTimeString(date: Date | string): string {
     if (typeof date === "string") return date;
+    if (date == null || typeof (date as any).toISOString !== "function")
+        return String(date);
     return date.toISOString().split(".")[0] + "Z";
 }
 
 export function toDateString(date: Date | string): string {
     if (typeof date === "string") return date;
+    if (date == null || typeof (date as any).toISOString !== "function")
+        return String(date);
     return date.toISOString().split("T")[0];
 }
 
 export function toTimeString(date: Date | string): string {
     if (typeof date === "string") return date;
+    if (date == null || typeof (date as any).toISOString !== "function")
+        return String(date);
     return date.toISOString().split("T")[1].slice(0, 5);
 }
 
