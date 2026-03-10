@@ -29,7 +29,8 @@
     "scripts": {
         "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
         "tsc": "tsc --noEmit",
-        "check:version": "node .husky/check-version.mjs"
+        "check:version": "node .husky/check-version.mjs",
+        "test": "vitest run"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.6",
@@ -42,7 +43,8 @@
         "rollup": "4.59.0",
         "rollup-plugin-cleandir": "^3.0.0",
         "rollup-plugin-typescript2": "^0.36.0",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.18"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"

@@ -42,12 +42,12 @@ export function extractDates(key: string, value: any) {
     return value;
 }
 
-export function packDates(key: string, value: any) {
+export function packDates(this: any, key: string, value: any) {
     if (dateRequestKeys.includes(key)) {
-        return value && toDateString(value);
+        return this[key] && toDateString(this[key]);
     }
     if (dateTimeRequestKeys.includes(key)) {
-        return value && toDateTimeString(value);
+        return this[key] && toDateTimeString(this[key]);
     }
     // if Field
     if (value instanceof Object && value.type && value.value) {
