@@ -77,18 +77,18 @@ export function trimTrailingSlash(url: string): string {
 }
 
 export function toDateTimeString(date: Date | string): string {
-    if (typeof date !== "string") date = date.toISOString();
-    return date.split(".")[0] + "Z";
+    if (typeof date === "string") return date;
+    return date.toISOString().split(".")[0] + "Z";
 }
 
 export function toDateString(date: Date | string): string {
-    if (typeof date !== "string") date = date.toISOString();
-    return date.split("T")[0];
+    if (typeof date === "string") return date;
+    return date.toISOString().split("T")[0];
 }
 
 export function toTimeString(date: Date | string): string {
-    if (typeof date !== "string") date = date.toISOString();
-    return date.split("T")[1].slice(0, 5);
+    if (typeof date === "string") return date;
+    return date.toISOString().split("T")[1].slice(0, 5);
 }
 
 type Filters = {
