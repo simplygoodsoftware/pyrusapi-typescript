@@ -1,7 +1,7 @@
 {
     "name": "pyrus-api",
     "description": "Pyrus API client for TypeScript",
-    "version": "3.3.2",
+    "version": "3.3.3",
     "author": {
         "name": "Pyrus",
         "email": "contact@pyrus.com"
