@@ -1,5 +1,11 @@
 import {describe, it, expect} from "vitest";
-import {toJson, fromJson} from "./functions";
+import {
+    toJson,
+    fromJson,
+    toDateString,
+    toDateTimeString,
+    toTimeString,
+} from "./functions";
 
 describe("fromJson", () => {
     it("parses plain object without date fields", () => {
@@ -111,5 +117,66 @@ describe("toJson", () => {
         const roundTripped = fromJson(toJson(input));
         expect(roundTripped.create_date).toBeInstanceOf(Date);
         expect(roundTripped.create_date.toISOString()).toBe(iso);
+    });
+});
+
+describe("toDateString / toDateTimeString / toTimeString", () => {
+    const date = new Date("2024-06-15T08:30:45.000Z");
+
+    it("toDateString returns YYYY-MM-DD for a Date", () => {
+        expect(toDateString(date)).toBe("2024-06-15");
+    });
+
+    it("toDateString returns string as-is", () => {
+        expect(toDateString("2024-06-15")).toBe("2024-06-15");
+    });
+
+    it("toDateTimeString returns ISO without milliseconds for a Date", () => {
+        expect(toDateTimeString(date)).toBe("2024-06-15T08:30:45Z");
+    });
+
+    it("toDateTimeString returns string as-is", () => {
+        expect(toDateTimeString("2024-06-15T08:30:45Z")).toBe(
+            "2024-06-15T08:30:45Z",
+        );
+    });
+
+    it("toTimeString returns HH:MM for a Date", () => {
+        expect(toTimeString(date)).toBe("08:30");
+    });
+
+    it("toTimeString returns string as-is", () => {
+        expect(toTimeString("08:30")).toBe("08:30");
+    });
+
+    it("toDateString falls back to String() for non-date non-string values", () => {
+        expect(toDateString(42 as any)).toBe("42");
+        expect(toDateString(null as any)).toBe("null");
+        expect(toDateString({} as any)).toBe("[object Object]");
+    });
+
+    it("toDateTimeString falls back to String() for non-date non-string values", () => {
+        expect(toDateTimeString(42 as any)).toBe("42");
+        expect(toDateTimeString(null as any)).toBe("null");
+    });
+
+    it("toTimeString falls back to String() for non-date non-string values", () => {
+        expect(toTimeString(42 as any)).toBe("42");
+        expect(toTimeString(null as any)).toBe("null");
+    });
+
+    it("toDateString works with a cross-realm date-like object (duck typing)", () => {
+        const dateLike = {toISOString: () => "2024-06-15T08:30:45.000Z"};
+        expect(toDateString(dateLike as any)).toBe("2024-06-15");
+    });
+
+    it("toDateTimeString works with a cross-realm date-like object (duck typing)", () => {
+        const dateLike = {toISOString: () => "2024-06-15T08:30:45.000Z"};
+        expect(toDateTimeString(dateLike as any)).toBe("2024-06-15T08:30:45Z");
+    });
+
+    it("toTimeString works with a cross-realm date-like object (duck typing)", () => {
+        const dateLike = {toISOString: () => "2024-06-15T08:30:45.000Z"};
+        expect(toTimeString(dateLike as any)).toBe("08:30");
     });
 });
