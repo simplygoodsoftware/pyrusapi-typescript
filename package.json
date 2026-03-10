@@ -30,7 +30,7 @@
         "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript && dts-bundle-generator --project tsconfig.types.json --no-banner -o ./build/types/index.d.ts index.ts && node ./module-wrapper.js",
         "tsc": "tsc --noEmit",
         "check:version": "node .husky/check-version.mjs",
-        "test": "vitest run"
+        "test": "vitest"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.6",
