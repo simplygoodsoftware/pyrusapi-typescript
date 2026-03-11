@@ -37,4 +37,6 @@ export const dateTimeRequestKeys = [
     "scheduled_datetime_utc",
     "start_time",
     "end_time",
+    "created_at",
+    "updated_at",
 ];
