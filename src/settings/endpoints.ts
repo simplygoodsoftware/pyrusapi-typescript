@@ -29,4 +29,7 @@ export enum Endpoints {
     Call = "/call",
     AttachCallRecord = "/attachcallrecord",
     Bots = "/bots",
+    KnowledgeBase = "/knowledgebase",
+    Structure = "/structure",
+    Permissions = "/permissions",
 }

@@ -18,6 +18,8 @@ export const allDateAndTimeResponseKeys = [
     "scheduled_date",
     "scheduled_datetime_utc",
     "close_date",
+    "created_at",
+    "updated_at",
 ];
 
 export const dateRequestKeys = ["due_date", "scheduled_date"];

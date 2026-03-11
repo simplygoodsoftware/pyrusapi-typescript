@@ -283,11 +283,95 @@ const announcementResponse = await client.announcements.addComment(
 ```
 
 * Create an announcement
-  
+
 ```typescript
 const announcementResponse = await client.announcements.create(
     {
         text: "New announcement"
+    }
+);
+```
+
+## Knowledge Base
+
+* Get a knowledge base entity (article or topic)
+
+```typescript
+const response = await client.knowledgeBase.get("LMcleQRnRqB");
+```
+
+* Create an article
+
+```typescript
+import {KnowledgeBaseEntityType} from "pyrus-api";
+```
+
+```typescript
+const response = await client.knowledgeBase.create(
+    {
+        type: KnowledgeBaseEntityType.Article,
+        title: "My Article",
+        body: "Article content in MD format",
+        parent_topic_id: "KoSjtyL9EWm"
+    }
+);
+```
+
+* Create a topic
+
+```typescript
+const response = await client.knowledgeBase.create(
+    {
+        type: KnowledgeBaseEntityType.Topic,
+        title: "My Topic"
+    }
+);
+```
+
+* Update a knowledge base entity
+
+```typescript
+const response = await client.knowledgeBase.update(
+    "LMcleQRnRqB",
+    {
+        title: "Updated Title",
+        body: "Updated content in MD format"
+    }
+);
+```
+
+* Delete a knowledge base entity
+
+```typescript
+const response = await client.knowledgeBase.delete("LMcleQRnRqB", true);
+```
+
+* Get knowledge base structure
+
+```typescript
+const response = await client.knowledgeBase.getStructure(
+    {
+        parent_topic_id: "KoSjtyL9EWm",
+        depth: 2
+    }
+);
+```
+
+* Get knowledge base entity permissions
+
+```typescript
+const response = await client.knowledgeBase.getPermissions("KoSjtyL9EWm");
+```
+
+* Update knowledge base entity permissions
+
+```typescript
+const response = await client.knowledgeBase.updatePermissions(
+    "KoSjtyL9EWm",
+    {
+        inherit: false,
+        readers: [1732, 4368],
+        editors: [2434]
     }
 );
 ```
