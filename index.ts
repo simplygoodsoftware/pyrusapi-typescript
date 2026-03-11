@@ -10,6 +10,8 @@ export {
 export {ApiError} from "./src/helpers/errors";
 
 // enums
+export {KnowledgeBaseEntityType} from "./src/enums/knowledgeBaseEntityType";
+export {KnowledgeBasePermissionLevel} from "./src/enums/knowledgeBasePermissionLevel";
 export {FilterMask} from "./src/enums/filterMask";
 export {CallEventType} from "./src/enums/callEventType";
 export {SourceType} from "./src/enums/sourceType";
@@ -27,6 +29,16 @@ export {SendSmsError} from "./src/enums/sendSmsError";
 export {SendSmsStatus} from "./src/enums/sendSmsStatus";
 
 // types
+export type {KnowledgeBasePersonInfo} from "./src/entities/knowledgeBasePersonInfo";
+export type {KnowledgeBaseStructureItem} from "./src/entities/knowledgeBaseStructureItem";
+export type {CreateKnowledgeBaseEntityRequest} from "./src/requests/createKnowledgeBaseEntityRequest";
+export type {UpdateKnowledgeBaseEntityRequest} from "./src/requests/updateKnowledgeBaseEntityRequest";
+export type {UpdateKnowledgeBasePermissionsRequest} from "./src/requests/updateKnowledgeBasePermissionsRequest";
+export type {GetKnowledgeBaseStructureRequest} from "./src/requests/getKnowledgeBaseStructureRequest";
+export type {KnowledgeBaseEntityResponse} from "./src/responses/knowledgeBaseEntityResponse";
+export type {KnowledgeBaseDeleteResponse} from "./src/responses/knowledgeBaseDeleteResponse";
+export type {KnowledgeBaseStructureResponse} from "./src/responses/knowledgeBaseStructureResponse";
+export type {KnowledgeBasePermissionsResponse} from "./src/responses/knowledgeBasePermissionsResponse";
 export type {NewFile} from "./src/entities/newFile";
 export type {FormMapping} from "./src/entities/formMapping";
 export type {CatalogItem} from "./src/entities/catalogItem";

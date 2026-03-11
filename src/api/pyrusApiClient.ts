@@ -18,6 +18,7 @@ import {FormsApi} from "./formsApi";
 import {LogsApi} from "./logsApi";
 import {CallApi} from "./callApi";
 import {BotApi} from "./botApi";
+import {KnowledgeBaseApi} from "./knowledgeBaseApi";
 import {trimTrailingSlash} from "../helpers/functions";
 
 export class PyrusApiClient extends BaseApi {
@@ -35,6 +36,7 @@ export class PyrusApiClient extends BaseApi {
     private _logs: LogsApi;
     private _call: CallApi;
     private _bot: BotApi;
+    private _knowledgeBase: KnowledgeBaseApi;
 
     /**
      *
@@ -169,5 +171,12 @@ export class PyrusApiClient extends BaseApi {
         if (!this._bot) this._bot = new BotApi(this.initParams);
 
         return this._bot;
+    }
+
+    public get knowledgeBase() {
+        if (!this._knowledgeBase)
+            this._knowledgeBase = new KnowledgeBaseApi(this.initParams);
+
+        return this._knowledgeBase;
     }
 }

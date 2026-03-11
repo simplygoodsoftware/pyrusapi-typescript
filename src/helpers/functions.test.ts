@@ -34,6 +34,17 @@ describe("fromJson", () => {
         expect(result.close_date).toBeInstanceOf(Date);
     });
 
+    it("converts created_at and updated_at to Date objects", () => {
+        const iso = "2024-08-20T14:30:00.000Z";
+        const result = fromJson<{created_at: Date; updated_at: Date}>(
+            `{"created_at":"${iso}","updated_at":"${iso}"}`,
+        );
+        expect(result.created_at).toBeInstanceOf(Date);
+        expect(result.updated_at).toBeInstanceOf(Date);
+        expect(result.created_at.toISOString()).toBe(iso);
+        expect(result.updated_at.toISOString()).toBe(iso);
+    });
+
     it("does not convert unknown string keys to Date", () => {
         const result = fromJson<{title: string; description: string}>(
             '{"title":"2024-01-01","description":"some text"}',
@@ -117,6 +128,30 @@ describe("toJson", () => {
         const roundTripped = fromJson(toJson(input));
         expect(roundTripped.create_date).toBeInstanceOf(Date);
         expect(roundTripped.create_date.toISOString()).toBe(iso);
+    });
+
+    it("serializes created_at (dateTimeRequestKey) Date as ISO without milliseconds", () => {
+        const date = new Date("2024-08-20T14:30:45.000Z");
+        const result = toJson({created_at: date});
+        const parsed = JSON.parse(result);
+        expect(parsed.created_at).toBe("2024-08-20T14:30:45Z");
+    });
+
+    it("serializes updated_at (dateTimeRequestKey) Date as ISO without milliseconds", () => {
+        const date = new Date("2024-08-20T14:30:45.000Z");
+        const result = toJson({updated_at: date});
+        const parsed = JSON.parse(result);
+        expect(parsed.updated_at).toBe("2024-08-20T14:30:45Z");
+    });
+
+    it("round-trips created_at and updated_at through toJson/fromJson", () => {
+        const iso = "2024-11-20T12:00:00.000Z";
+        const input = {created_at: iso, updated_at: iso};
+        const roundTripped = fromJson(toJson(input));
+        expect(roundTripped.created_at).toBeInstanceOf(Date);
+        expect(roundTripped.updated_at).toBeInstanceOf(Date);
+        expect(roundTripped.created_at.toISOString()).toBe(iso);
+        expect(roundTripped.updated_at.toISOString()).toBe(iso);
     });
 });
 
