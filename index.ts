@@ -8,6 +8,8 @@ export {
     prepareHeadersForCatalogApiRequest,
 } from "./src/helpers/functions";
 export {ApiError} from "./src/helpers/errors";
+export {safeClient} from "./src/helpers/safeClient";
+export type {Result, Ok, Err, SafeClient} from "./src/helpers/safeClient";
 
 // enums
 export {FilterMask} from "./src/enums/filterMask";
