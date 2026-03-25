@@ -29,6 +29,7 @@ export {SendSmsError} from "./src/enums/sendSmsError";
 export {SendSmsStatus} from "./src/enums/sendSmsStatus";
 
 // types
+export type {KnowledgeBaseAttachmentInfo} from "./src/entities/knowledgeBaseAttachmentInfo";
 export type {KnowledgeBasePersonInfo} from "./src/entities/knowledgeBasePersonInfo";
 export type {KnowledgeBaseStructureItem} from "./src/entities/knowledgeBaseStructureItem";
 export type {CreateKnowledgeBaseEntityRequest} from "./src/requests/createKnowledgeBaseEntityRequest";

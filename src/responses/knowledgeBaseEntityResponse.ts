@@ -1,6 +1,7 @@
 import {KnowledgeBaseEntityType} from "../enums/knowledgeBaseEntityType";
 import {KnowledgeBasePermissionLevel} from "../enums/knowledgeBasePermissionLevel";
 import {KnowledgeBasePersonInfo} from "../entities/knowledgeBasePersonInfo";
+import {KnowledgeBaseAttachmentInfo} from "../entities/knowledgeBaseAttachmentInfo";
 
 export type KnowledgeBaseEntityResponse = {
     id: string;
@@ -16,4 +17,5 @@ export type KnowledgeBaseEntityResponse = {
     access_right: KnowledgeBasePermissionLevel;
     is_open_for_organization: boolean;
     is_public: boolean;
+    attachments: KnowledgeBaseAttachmentInfo[];
 };
