@@ -130,6 +130,7 @@ export const ErrorCodeType = {
     // Too many Requests (429)
     TooManyRequests: "too_many_requests",
     TaskDeleteLimitExceeded: "task_delete_limit_exceeded",
+    InvalidFromMailBox: "invalid_from_mailbox",
 } as const;
 
 export type ErrorCodeType = typeof ErrorCodeType[keyof typeof ErrorCodeType];
