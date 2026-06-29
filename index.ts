@@ -27,6 +27,9 @@ export {PermissionLevel} from "./src/enums/permissionLevel";
 export {PersonType} from "./src/enums/personType";
 export {SendSmsError} from "./src/enums/sendSmsError";
 export {SendSmsStatus} from "./src/enums/sendSmsStatus";
+export {MeetingType} from "./src/enums/meetingType";
+export {MeetingMemberStatus} from "./src/enums/meetingMemberStatus";
+export {MeetingActionType} from "./src/enums/meetingActionType";
 
 // types
 export type {KnowledgeBaseAttachmentInfo} from "./src/entities/knowledgeBaseAttachmentInfo";
@@ -49,6 +52,20 @@ export type {FormFilter} from "./src/requests/formFilter";
 export type {CommentDescription} from "./src/entities/commentDescription";
 export type {Channel} from "./src/entities/channel";
 export type {PersonIdentity} from "./src/requests/personIdentity";
+
+// meetings
+export type {MeetingPersonInfo} from "./src/entities/meetingPersonInfo";
+export type {MeetingMember} from "./src/entities/meetingMember";
+export type {MeetingRoom} from "./src/entities/meetingRoom";
+export type {MeetingJoinParameters} from "./src/entities/meetingJoinParameters";
+export type {MeetingActionInfo} from "./src/entities/meetingActionInfo";
+export type {CreateMeetingRequest} from "./src/requests/createMeetingRequest";
+export type {UpdateMeetingRequest} from "./src/requests/updateMeetingRequest";
+export type {UpdateMeetingTasksRequest} from "./src/requests/updateMeetingTasksRequest";
+export type {UpdateMeetingMyStatusRequest} from "./src/requests/updateMeetingMyStatusRequest";
+export type {MeetingResponse} from "./src/responses/meetingResponse";
+export type {MeetingRoomsResponse} from "./src/responses/meetingRoomsResponse";
+export type {DeleteMeetingResponse} from "./src/responses/deleteMeetingResponse";
 
 // form field types
 export type {FormFieldAuthor} from "./src/entities/formFields/formFieldAuthor";

@@ -7,6 +7,7 @@ import {SmsInfo} from "./smsInfo";
 import {Approval} from "./approval";
 import {Channel} from "./channel";
 import {FormField} from "./formFields/formField";
+import {MeetingActionInfo} from "./meetingActionInfo";
 
 export type TaskComment = {
     id: number;
@@ -48,4 +49,5 @@ export type TaskComment = {
     spent_minutes?: number;
     skip_satisfaction?: boolean;
     sms_info?: SmsInfo;
+    meeting_action?: MeetingActionInfo;
 };
