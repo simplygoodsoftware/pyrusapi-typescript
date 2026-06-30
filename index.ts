@@ -87,3 +87,7 @@ export type {BotHookResponse} from "./src/responses/botHookResponse";
 
 // client
 export {PyrusApiClient} from "./src/api";
+
+// settings
+export {setDefaults} from "./src/settings/defaults";
+export type {Settings} from "./src/entities/settings";
