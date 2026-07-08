@@ -375,3 +375,85 @@ const response = await client.knowledgeBase.updatePermissions(
     }
 );
 ```
+
+## Meetings
+
+* Create a meeting linked to one or more tasks
+
+```typescript
+import {MeetingType} from "pyrus-api";
+```
+
+```typescript
+const meeting = await client.meetings.create(
+    {
+        type: MeetingType.Offline,
+        start_time: new Date("2026-07-01T10:00:00Z"),
+        duration_minutes: 60,
+        title: "Sprint planning",
+        task_ids: [2512],
+        member_ids: [1732, 4368]
+    }
+);
+```
+
+* Get a meeting
+
+```typescript
+const meeting = await client.meetings.get(meetingId);
+```
+
+* Update a meeting (full replace of parameters and members; does not change linked tasks or your status)
+
+```typescript
+const meeting = await client.meetings.update(
+    meetingId,
+    {
+        type: MeetingType.Zoom,
+        start_time: new Date("2026-07-01T11:00:00Z"),
+        duration_minutes: 45,
+        title: "Sprint planning (rescheduled)",
+        member_ids: [1732, 4368]
+    }
+);
+```
+
+* Add or remove task links
+
+```typescript
+const meeting = await client.meetings.updateTasks(
+    meetingId,
+    {
+        add: [2513],
+        remove: [2512]
+    }
+);
+```
+
+* Change your own participation status
+
+```typescript
+import {MeetingMemberStatus} from "pyrus-api";
+```
+
+```typescript
+const meeting = await client.meetings.updateMyStatus(
+    meetingId,
+    {
+        status: MeetingMemberStatus.Going
+    }
+);
+```
+
+* Delete a meeting
+
+```typescript
+const response = await client.meetings.delete(meetingId);
+```
+
+* List meeting rooms available in the organization
+
+```typescript
+const response = await client.meetings.getMeetingRooms();
+const rooms = response.meeting_rooms;
+```

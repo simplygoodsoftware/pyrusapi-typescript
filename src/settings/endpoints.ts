@@ -32,4 +32,7 @@ export enum Endpoints {
     KnowledgeBase = "/knowledgebase",
     Structure = "/structure",
     Permissions = "/permissions",
+    Meetings = "/meetings",
+    MeetingRooms = "/meeting-rooms",
+    MyStatus = "/my-status",
 }
