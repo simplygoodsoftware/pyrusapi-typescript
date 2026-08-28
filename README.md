@@ -117,11 +117,13 @@ const task = taskResponse.task;
 * Add task comment, sent to the custom channel 
 
 ```typescript
+import type {ChannelType} from "pyrus-api";
+
 const taskId = 2512;
 const taskResponse = await client.tasks.addComment(
     taskId,
     {
-        text: "Hello!"
+        text: "Hello!",
         channel: {
             type: ChannelType.Custom,
             integration_id: 999999
