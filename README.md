@@ -114,6 +114,23 @@ const taskResponse = await client.tasks.addComment(
 const task = taskResponse.task;
 ```
 
+* Add task comment, sent to the custom channel 
+
+```typescript
+const taskId = 2512;
+const taskResponse = await client.tasks.addComment(
+    taskId,
+    {
+        text: "Hello!"
+        channel: {
+            type: ChannelType.Custom,
+            integration_id: 999999
+        }
+    }
+);
+const task = taskResponse.task;
+```
+
 * Create a task
   
 ```typescript
