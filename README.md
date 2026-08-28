@@ -125,7 +125,7 @@ const taskResponse = await client.tasks.addComment(
     {
         text: "Hello!",
         channel: {
-            type: ChannelType.Custom,
+            type: "custom",
             integration_id: 999999
         }
     }
