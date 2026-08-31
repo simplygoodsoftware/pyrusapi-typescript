@@ -38,13 +38,13 @@
         "@types/rollup": "^0.54.0",
         "dts-bundle-generator": "^9.5.1",
         "husky": "^9.1.6",
-        "lint-staged": "^15.2.10",
+        "lint-staged": "^15.5.2",
         "prettier": "2.5.1",
         "rollup": "4.59.0",
         "rollup-plugin-cleandir": "^3.0.0",
         "rollup-plugin-typescript2": "^0.36.0",
         "typescript": "^5.9.3",
-        "vitest": "^4.0.18"
+        "vitest": "^4.1.11"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"

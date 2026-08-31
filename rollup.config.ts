@@ -14,6 +14,7 @@ const config: RollupOptions = {
         cleandir(OUT_DIR),
         typescript({
             useTsconfigDeclarationDir: true,
+            include: ["**/*.ts", "**/*.tsx"],
             tsconfigOverride: {
                 compilerOptions: {
                     removeComments: true,
