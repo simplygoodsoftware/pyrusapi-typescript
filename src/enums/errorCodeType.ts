@@ -112,6 +112,7 @@ export const ErrorCodeType = {
     FieldEditingIsNotAllowed: "field_editing_is_not_allowed",
     NonUniqueCode: "non_unique_code",
     InvalidFieldCode: "invalid_field_code",
+    CustomChannelNotFound: "custom_channel_not_found",
 
     // Forbidden (403)
     AccessDeniedProject: "access_denied_project",
