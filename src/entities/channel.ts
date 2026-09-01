@@ -8,4 +8,5 @@ export type Channel = {
     direction?: ChannelDirection;
     to?: ChannelUser;
     from?: ChannelUser;
+    integration_id?: number;
 };
