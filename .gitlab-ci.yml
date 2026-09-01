@@ -1,4 +1,4 @@
-image: node:24-alpine
+image: ${CI_YANDEX_CLOUD_REGISTRY}/${CI_DOCKERHUB_PROXY_REPO}/node:24-alpine
 
 stages:
     - build
