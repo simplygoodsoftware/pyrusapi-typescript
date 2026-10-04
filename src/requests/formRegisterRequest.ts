@@ -24,4 +24,10 @@ export type FormRegisterRequest = {
      * More than 0, and less than or equal to 20000
      */
     item_count?: number;
+    /**
+     * Include only tasks containing the text (full-text search)
+     * @remarks
+     * Up to 300 characters
+     */
+    include_text?: string;
 };
