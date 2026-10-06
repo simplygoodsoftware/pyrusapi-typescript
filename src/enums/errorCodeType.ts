@@ -114,6 +114,13 @@ export const ErrorCodeType = {
     InvalidFieldCode: "invalid_field_code",
     CustomChannelNotFound: "custom_channel_not_found",
 
+    BpmnTokenNotFound: "bpmn_token_not_found",
+    BpmnNodeNotFound: "bpmn_node_not_found",
+    BpmnInvalidTokenMove: "bpmn_invalid_token_move",
+    BpmnEngineFailure: "bpmn_engine_failure",
+    BpmnTaskClosed: "bpmn_task_closed",
+    BpmnDiagramVersionNotFound: "bpmn_diagram_version_not_found",
+
     // Forbidden (403)
     AccessDeniedProject: "access_denied_project",
     AccessDeniedTask: "access_denied_task",

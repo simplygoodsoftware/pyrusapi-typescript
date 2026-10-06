@@ -18,6 +18,7 @@ export enum Endpoints {
     Tasks = "/tasks",
     TasksComments = "/comments",
     Forms = "/forms",
+    FormsBpmn = "/bpmn",
     FormsRegister = "/register",
     FormsPermissions = "/permissions",
     EventHistory = "/eventhistory",

@@ -85,6 +85,31 @@ export type {
 export type {BotHookRequest} from "./src/requests/botHookRequest";
 export type {BotHookResponse} from "./src/responses/botHookResponse";
 
+// BPMN
+export {BpmnConditionType} from "./src/enums/bpmnConditionType";
+export {BpmnNodeType} from "./src/enums/bpmnNodeType";
+export {BpmnParticipantAction} from "./src/enums/bpmnParticipantAction";
+export {BpmnFieldUpdateDirection} from "./src/enums/bpmnFieldUpdateDirection";
+export {BpmnTimerMode} from "./src/enums/bpmnTimerMode";
+export {BpmnUpdateMainFieldsMode} from "./src/enums/bpmnUpdateMainFieldsMode";
+export type {BpmnCondition} from "./src/entities/bpmn/bpmnCondition";
+export type {BpmnDiagramVersionInfo} from "./src/entities/bpmn/bpmnDiagramVersionInfo";
+export type {BpmnFieldVisibilityCondition} from "./src/entities/bpmn/bpmnFieldVisibilityCondition";
+export type {BpmnFlow} from "./src/entities/bpmn/bpmnFlow";
+export type {BpmnFrame} from "./src/entities/bpmn/bpmnFrame";
+export type {BpmnNode} from "./src/entities/bpmn/bpmnNode";
+export type {BpmnParticipant} from "./src/entities/bpmn/bpmnParticipant";
+export type {BpmnPosition} from "./src/entities/bpmn/bpmnPosition";
+export type {BpmnSize} from "./src/entities/bpmn/bpmnSize";
+export type {BpmnSubprocessConfiguration} from "./src/entities/bpmn/bpmnSubprocessConfiguration";
+export type {BpmnSubprocessConstantValue} from "./src/entities/bpmn/bpmnSubprocessConstantValue";
+export type {BpmnSubprocessFieldMapping} from "./src/entities/bpmn/bpmnSubprocessFieldMapping";
+export type {BpmnTimer} from "./src/entities/bpmn/bpmnTimer";
+export type {BpmnWorkflowByDepartmentColumn} from "./src/entities/bpmn/bpmnWorkflowByDepartmentColumn";
+export type {BpmnWorkflowCatalogColumn} from "./src/entities/bpmn/bpmnWorkflowCatalogColumn";
+export type {FormBpmnVersionsResponse} from "./src/responses/formBpmnVersionsResponse";
+export type {FormBpmnDiagramResponse} from "./src/responses/formBpmnDiagramResponse";
+
 // client
 export {PyrusApiClient} from "./src/api";
 

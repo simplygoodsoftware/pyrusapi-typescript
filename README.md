@@ -69,6 +69,32 @@ const formRegisterResponse = await client.forms.getTasks(
 const tasks = formRegisterResponse.tasks;
 ```
       
+* Get saved BPMN diagram versions of a form
+
+The list includes deleted versions (with `delete_date`) and is sorted by version
+number in descending order. `active_bpmn_version` is absent or `null` when BPMN
+routing for new tasks is turned off.
+
+```typescript
+const versionsResponse = await client.forms.getBpmnVersions({id: formId});
+const versions = versionsResponse.versions;
+const activeVersion = versionsResponse.active_bpmn_version;
+```
+
+* Get a BPMN diagram by version
+
+Version 0 always exists. Before it is saved, `create_date` and `nodes` are absent.
+Date values are returned as `Date` objects. BPMN condition types are numeric;
+other BPMN enums use the API's case-sensitive string values.
+
+```typescript
+const diagramResponse = await client.forms.getBpmnDiagram(
+    formId,
+    activeVersion ?? 0,
+);
+const nodes = diagramResponse.nodes;
+```
+
 ## Tasks
 
 * Get task with all comments

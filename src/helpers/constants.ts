@@ -12,6 +12,8 @@ export const allDateAndTimeFieldTypes = [
 
 export const allDateAndTimeResponseKeys = [
     "create_date",
+    "delete_date",
+    "date",
     "last_modified_date",
     "due_date",
     "due",
