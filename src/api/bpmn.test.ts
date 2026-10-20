@@ -11,8 +11,9 @@ import type {
     BpmnWorkflowByDepartmentColumn,
     BpmnWorkflowCatalogColumn,
     FormBpmnDiagramResponse,
-    Person,
 } from "../../index";
+
+import type {Person} from "../entities/person";
 
 const apiUrl = "https://api.example.com/v4";
 const person: Person = {
@@ -20,7 +21,10 @@ const person: Person = {
     first_name: "Test",
     last_name: "User",
     type: "user",
-    department_id: 42,
+    email: "test@example.com",
+    position: "",
+    skype: "",
+    phone: "",
     banned: false,
 };
 const client = () =>
@@ -87,7 +91,7 @@ describe("BPMN response contracts", () => {
         const config = result.nodes![1].subprocess_configuration!;
         expect(config.field_mappings![0].is_constant).toBeUndefined();
         expect(config.wait_until_subprocess_finished).toBe(false);
-        expect(result.author!.department_id).toBe(42);
+        expect(result.author!.id).toBe(person.id);
     });
 
     it("reads all C# diagram branches without converting IDs into Bundle codes", async () => {
