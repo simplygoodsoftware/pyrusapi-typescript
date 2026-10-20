@@ -12,6 +12,8 @@ import type {
     FormBpmnVersionsResponse,
 } from "../../index";
 
+import type {FormResponse} from "../responses/formResponse";
+
 const apiUrl = "https://api.example.com/v4";
 const client = () =>
     new PyrusApiClient("test-token", {apiUrl, authUrl: apiUrl});
@@ -32,6 +34,30 @@ function mockResponse(body: unknown, status = 200) {
 afterEach(() => vi.restoreAllMocks());
 
 describe("Forms BPMN API", () => {
+    it.each([
+        {use_bpmn_for_new_tasks: true, bpmn_version: 0},
+        {use_bpmn_for_new_tasks: false},
+        {},
+    ])("reads BPMN settings from the form: %j", async (settings) => {
+        const form: FormResponse = {
+            id: 123,
+            name: "Test",
+            fields: [],
+            deleted_or_closed: false,
+            ...settings,
+        };
+        const fetchMock = mockResponse(form);
+        const response = await client().forms.get({id: 123});
+        expect(fetchMock).toHaveBeenCalledWith(
+            `${apiUrl}/forms/123`,
+            expect.objectContaining({method: "GET"}),
+        );
+        expect(response.use_bpmn_for_new_tasks).toBe(
+            settings.use_bpmn_for_new_tasks,
+        );
+        expect(response.bpmn_version).toBe(settings.bpmn_version);
+    });
+
     it("gets saved versions with authentication and parses creation/deletion dates", async () => {
         const fetchMock = mockResponse({
             form_id: 123,

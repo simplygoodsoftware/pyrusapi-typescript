@@ -69,6 +69,17 @@ const formRegisterResponse = await client.forms.getTasks(
 const tasks = formRegisterResponse.tasks;
 ```
       
+* Get BPMN settings of a form
+
+```typescript
+const form = await client.forms.get({id: formId});
+const useBpmn = form.use_bpmn_for_new_tasks;
+const bpmnVersion = form.bpmn_version;
+```
+
+`bpmn_version` is the version used for new tasks and is omitted when BPMN routing
+is disabled. Version `0` is valid.
+
 * Get saved BPMN diagram versions of a form
 
 The list includes deleted versions (with `delete_date`) and is sorted by version
