@@ -16,13 +16,17 @@ const apiUrl = "https://api.example.com/v4";
 const client = () =>
     new PyrusApiClient("test-token", {apiUrl, authUrl: apiUrl});
 
+function jsonResponse(body: unknown, status = 200) {
+    return new Response(JSON.stringify(body), {
+        status,
+        headers: {"Content-Type": "application/json"},
+    });
+}
+
 function mockResponse(body: unknown, status = 200) {
-    return vi.spyOn(globalThis, "fetch").mockResolvedValue(
-        new Response(JSON.stringify(body), {
-            status,
-            headers: {"Content-Type": "application/json"},
-        }),
-    );
+    return vi
+        .spyOn(globalThis, "fetch")
+        .mockResolvedValue(jsonResponse(body, status));
 }
 
 afterEach(() => vi.restoreAllMocks());
@@ -157,6 +161,33 @@ describe("Forms BPMN API", () => {
         await expect(request).rejects.toBeInstanceOf(ApiError);
         await expect(request).rejects.toMatchObject({
             errorCode: ErrorCodeType.BpmnDiagramVersionNotFound,
+        });
+    });
+
+    it("waits for authentication and follows the API URL from the auth response", async () => {
+        const fetchMock = vi
+            .spyOn(globalThis, "fetch")
+            .mockResolvedValueOnce(
+                jsonResponse({
+                    access_token: "test-token",
+                    api_url: "https://tenant.example.com/v4/",
+                    files_url: "https://files.example.com/",
+                }),
+            )
+            .mockResolvedValueOnce(jsonResponse({form_id: 123, versions: []}));
+        const authenticated = new PyrusApiClient(
+            {login: "test@example.com", security_key: "test-key"},
+            {apiUrl, authUrl: "https://auth.example.com/v4"},
+        );
+        await authenticated.forms.getBpmnVersions({id: 123});
+        expect(fetchMock.mock.calls[0][0]).toBe(
+            "https://auth.example.com/v4/auth",
+        );
+        expect(fetchMock.mock.calls[1][0]).toBe(
+            "https://tenant.example.com/v4/forms/123/bpmn",
+        );
+        expect(fetchMock.mock.calls[1][1]!.headers).toMatchObject({
+            Authorization: "Bearer test-token",
         });
     });
 });

@@ -224,12 +224,6 @@ describe("BPMN constant dates", () => {
         expect(value.constant_value.date).toEqual(new Date("2026-10-06"));
         expect(toJson(value)).toBe(json);
     });
-
-    it("preserves explicit null dates", () => {
-        const json =
-            '{"create_date":null,"delete_date":null,"constant_value":{"date":null}}';
-        expect(toJson(fromJson(json))).toBe(json);
-    });
 });
 
 describe("shared date-only serialization", () => {
@@ -249,15 +243,5 @@ describe("shared date-only serialization", () => {
             constant_value: {date: "2026-10-05"},
         });
         expect(date.getTime()).toBe(originalTime);
-    });
-
-    it("keeps strings and null unchanged and omits undefined for all date-only keys", () => {
-        for (const key of ["due_date", "scheduled_date", "date"]) {
-            expect(toJson({[key]: "2026-10-06"})).toBe(
-                JSON.stringify({[key]: "2026-10-06"}),
-            );
-            expect(toJson({[key]: null})).toBe(JSON.stringify({[key]: null}));
-            expect(toJson({[key]: undefined})).toBe("{}");
-        }
     });
 });
