@@ -4,6 +4,6 @@ import {BpmnSize} from "./bpmnSize";
 export type BpmnFrame = {
     id: number;
     description?: string;
-    position: BpmnPosition;
-    size: BpmnSize;
+    position?: BpmnPosition;
+    size?: BpmnSize;
 };

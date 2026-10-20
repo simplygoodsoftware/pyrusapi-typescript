@@ -95,6 +95,17 @@ const diagramResponse = await client.forms.getBpmnDiagram(
 const nodes = diagramResponse.nodes;
 ```
 
+The BPMN types follow the [C# client BPMN API](https://github.com/simplygoodsoftware/pyrusapi-csharp/pull/200).
+These endpoints return numeric IDs and case-sensitive API enum values. Bundle API
+routing uses string codes and a different JSON structure; its payloads cannot be
+used directly as BPMN diagram responses.
+
+The server may omit empty arrays, visual properties and false flags. For example,
+use `flow.is_default ?? false` when a boolean value is needed. Subprocess constant
+dates use the shared `fromJson` / `toJson` helpers, just like task dates:
+responses are parsed as `Date`; serialization uses `toDateString` (`YYYY-MM-DD`
+in UTC), preserves strings and `null`, and omits `undefined`.
+
 ## Tasks
 
 * Get task with all comments

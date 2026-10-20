@@ -3,5 +3,5 @@ export type BpmnWorkflowCatalogColumn = {
     column_id: number;
     column_name?: string;
     field_id?: number | null;
-    is_manager: boolean;
+    is_manager?: boolean;
 };

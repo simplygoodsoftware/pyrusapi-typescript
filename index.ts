@@ -86,6 +86,7 @@ export type {BotHookRequest} from "./src/requests/botHookRequest";
 export type {BotHookResponse} from "./src/responses/botHookResponse";
 
 // BPMN
+export type {Person} from "./src/entities/person";
 export {BpmnConditionType} from "./src/enums/bpmnConditionType";
 export {BpmnNodeType} from "./src/enums/bpmnNodeType";
 export {BpmnParticipantAction} from "./src/enums/bpmnParticipantAction";

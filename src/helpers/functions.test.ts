@@ -215,3 +215,49 @@ describe("toDateString / toDateTimeString / toTimeString", () => {
         expect(toTimeString(dateLike as any)).toBe("08:30");
     });
 });
+
+describe("BPMN constant dates", () => {
+    it("round-trips date-only constants and preserves zero, false and null", () => {
+        const json =
+            '{"constant_value":{"date":"2026-10-06","bit":false,"long":0,"amount":null}}';
+        const value = fromJson(json);
+        expect(value.constant_value.date).toEqual(new Date("2026-10-06"));
+        expect(toJson(value)).toBe(json);
+    });
+
+    it("preserves explicit null dates", () => {
+        const json =
+            '{"create_date":null,"delete_date":null,"constant_value":{"date":null}}';
+        expect(toJson(fromJson(json))).toBe(json);
+    });
+});
+
+describe("shared date-only serialization", () => {
+    it("uses the same UTC date format for task dates and nested BPMN constants", () => {
+        const date = new Date("2026-10-06T01:30:00+03:00");
+        const originalTime = date.getTime();
+        const result = JSON.parse(
+            toJson({
+                due_date: date,
+                scheduled_date: date,
+                constant_value: {date},
+            }),
+        );
+        expect(result).toEqual({
+            due_date: "2026-10-05",
+            scheduled_date: "2026-10-05",
+            constant_value: {date: "2026-10-05"},
+        });
+        expect(date.getTime()).toBe(originalTime);
+    });
+
+    it("keeps strings and null unchanged and omits undefined for all date-only keys", () => {
+        for (const key of ["due_date", "scheduled_date", "date"]) {
+            expect(toJson({[key]: "2026-10-06"})).toBe(
+                JSON.stringify({[key]: "2026-10-06"}),
+            );
+            expect(toJson({[key]: null})).toBe(JSON.stringify({[key]: null}));
+            expect(toJson({[key]: undefined})).toBe("{}");
+        }
+    });
+});

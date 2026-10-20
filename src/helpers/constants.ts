@@ -24,7 +24,7 @@ export const allDateAndTimeResponseKeys = [
     "updated_at",
 ];
 
-export const dateRequestKeys = ["due_date", "scheduled_date"];
+export const dateRequestKeys = ["due_date", "scheduled_date", "date"];
 
 export const dateTimeRequestKeys = [
     "start_date_utc",
