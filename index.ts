@@ -86,6 +86,12 @@ export type {BotHookRequest} from "./src/requests/botHookRequest";
 export type {BotHookResponse} from "./src/responses/botHookResponse";
 
 // BPMN
+export {BpmnTokenStatus} from "./src/enums/bpmnTokenStatus";
+export {BpmnTokenEventType} from "./src/enums/bpmnTokenEventType";
+export type {BpmnToken} from "./src/entities/bpmn/bpmnToken";
+export type {BpmnTransition} from "./src/entities/bpmn/bpmnTransition";
+export type {BpmnTokenMove} from "./src/entities/bpmn/bpmnTokenMove";
+export type {TaskCommentRequest} from "./src/requests/taskCommentRequest";
 export {BpmnConditionType} from "./src/enums/bpmnConditionType";
 export {BpmnNodeType} from "./src/enums/bpmnNodeType";
 export {BpmnParticipantAction} from "./src/enums/bpmnParticipantAction";

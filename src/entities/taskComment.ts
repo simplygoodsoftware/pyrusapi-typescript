@@ -1,3 +1,4 @@
+import {BpmnTransition} from "./bpmn/bpmnTransition";
 import {Person} from "./person";
 import {AttachedFile} from "./attachedFile";
 import {Role} from "./role";
@@ -48,4 +49,5 @@ export type TaskComment = {
     spent_minutes?: number;
     skip_satisfaction?: boolean;
     sms_info?: SmsInfo;
+    bpmn_transitions?: BpmnTransition[];
 };

@@ -126,6 +126,51 @@ const taskResponse = await client.tasks.get({id: 2512});
 const task = taskResponse.task;
 ```
 
+* Read BPMN task state
+
+```typescript
+const {task} = await client.tasks.get({id: taskId});
+const currentNodes = task.bpmn_tokens ?? [];
+if (task.bpmn_version != null && task.form_id != null) {
+    const diagram = await client.forms.getBpmnDiagram(task.form_id, task.bpmn_version);
+}
+```
+
+BPMN tasks include `bpmn_version`, `bpmn_suspended` and optional `bpmn_tokens`.
+Version `0` is valid; parallel branches can have several current nodes. Each token
+contains its ID, node ID and status, and may include a node name, node type,
+participant, expected event type and `event_time` as a `Date`. Ordinary tasks omit
+BPMN fields. Use the task's version to load its diagram: the active form version
+may already have changed.
+
+Comments may contain `bpmn_transitions`. A consumed token has only `token_id`.
+For a suspended transition, `node_id` is where processing stopped; check `status`
+before treating it as a successful transition.
+
+These fields are also available in `BotHookRequest.task`. Their delivery to bot
+webhooks depends on the server's `SendBpmnInfoToWebhooks` feature flag.
+
+* Send BPMN commands
+
+```typescript
+await client.tasks.addComment(taskId, {
+    approval_choice: ApprovalChoice.Approved,
+    bpmn_node_id: nodeId,
+});
+
+await client.tasks.addComment(taskId, {bpmn_resume_processing: true});
+
+await client.tasks.addComment(taskId, {
+    bpmn_token_moves: [{token_id: tokenId, node_id: targetNodeId}],
+});
+```
+
+All commands use `POST /tasks/{id}/comments`. `bpmn_node_id` requires
+`approval_choice` and selects a node when the same person approves several
+parallel branches. Send approval, resume and manual moves in separate comments.
+Resume and manual moves cannot be combined with closing or reopening a task;
+the server validates command combinations and access rights.
+
 * Add task comment
 
 ```typescript
