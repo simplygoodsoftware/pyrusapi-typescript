@@ -3,6 +3,7 @@ import {NewFile} from "../entities/newFile";
 import {FormFieldIdentified} from "../entities/formFields/formField";
 import {Channel} from "../entities/channel";
 import {ApprovalChoice} from "../enums/approvalChoice";
+import {BpmnTokenMove} from "../entities/bpmn/bpmnTokenMove";
 import {PersonIdentity} from "./personIdentity";
 
 export type TaskCommentRequest = {
@@ -10,6 +11,9 @@ export type TaskCommentRequest = {
     formatted_text?: string;
     subject?: string;
     approval_choice?: ApprovalChoice;
+    bpmn_node_id?: number;
+    bpmn_resume_processing?: boolean;
+    bpmn_token_moves?: BpmnTokenMove[];
     reassign_to?: PersonIdentity;
     approval_steps?: number[];
     action?: ActivityAction;

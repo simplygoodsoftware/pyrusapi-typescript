@@ -3,6 +3,7 @@ import {FormField} from "./formFields/formField";
 import {Approval} from "./approval";
 import {Subscriber} from "./subscriber";
 import {Person} from "./person";
+import {BpmnToken} from "./bpmn/bpmnToken";
 import {TaskHeader} from "./taskHeader";
 
 export type Task = TaskHeader & {
@@ -24,5 +25,8 @@ export type Task = TaskHeader & {
     last_note_id?: number;
     subject?: string;
     current_step?: number;
+    bpmn_version?: number;
+    bpmn_suspended?: boolean;
+    bpmn_tokens?: BpmnToken[];
     is_closed: boolean;
 };
