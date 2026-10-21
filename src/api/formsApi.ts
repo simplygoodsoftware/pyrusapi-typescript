@@ -8,6 +8,8 @@ import {FormRegisterResponse} from "../responses/formRegisterResponse";
 import {processFilters, toJson} from "../helpers/functions";
 import {PermissionsResponse} from "../responses/permissionsResponse";
 import {ChangePermissionsRequest} from "../requests/changePermissionsRequest";
+import {FormBpmnVersionsResponse} from "../responses/formBpmnVersionsResponse";
+import {FormBpmnDiagramResponse} from "../responses/formBpmnDiagramResponse";
 
 export class FormsApi extends BaseApi {
     protected _moduleSubPath = Endpoints.Forms;
@@ -15,6 +17,25 @@ export class FormsApi extends BaseApi {
     public async get({id}: ById) {
         return await this.fetchApi<FormResponse>(
             (await this.getModulePath()) + `/${id}`,
+            "GET",
+        );
+    }
+
+    /** Returns saved versions, including deleted ones, in descending version order. */
+    public async getBpmnVersions({id}: ById) {
+        return await this.fetchApi<FormBpmnVersionsResponse>(
+            (await this.getModulePath()) + `/${id}` + Endpoints.FormsBpmn,
+            "GET",
+        );
+    }
+
+    /** Version 0 exists even before saving; its nodes and create_date may be absent. */
+    public async getBpmnDiagram(id: number, bpmnVersion: number) {
+        return await this.fetchApi<FormBpmnDiagramResponse>(
+            (await this.getModulePath()) +
+                `/${id}` +
+                Endpoints.FormsBpmn +
+                `/${bpmnVersion}`,
             "GET",
         );
     }

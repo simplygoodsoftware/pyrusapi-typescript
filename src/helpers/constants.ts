@@ -12,6 +12,9 @@ export const allDateAndTimeFieldTypes = [
 
 export const allDateAndTimeResponseKeys = [
     "create_date",
+    "delete_date",
+    "date",
+    "event_time",
     "last_modified_date",
     "due_date",
     "due",
@@ -22,7 +25,7 @@ export const allDateAndTimeResponseKeys = [
     "updated_at",
 ];
 
-export const dateRequestKeys = ["due_date", "scheduled_date"];
+export const dateRequestKeys = ["due_date", "scheduled_date", "date"];
 
 export const dateTimeRequestKeys = [
     "start_date_utc",

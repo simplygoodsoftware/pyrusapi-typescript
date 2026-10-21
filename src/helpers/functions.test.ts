@@ -215,3 +215,33 @@ describe("toDateString / toDateTimeString / toTimeString", () => {
         expect(toTimeString(dateLike as any)).toBe("08:30");
     });
 });
+
+describe("BPMN constant dates", () => {
+    it("round-trips date-only constants and preserves zero, false and null", () => {
+        const json =
+            '{"constant_value":{"date":"2026-10-06","bit":false,"long":0,"amount":null}}';
+        const value = fromJson(json);
+        expect(value.constant_value.date).toEqual(new Date("2026-10-06"));
+        expect(toJson(value)).toBe(json);
+    });
+});
+
+describe("shared date-only serialization", () => {
+    it("uses the same UTC date format for task dates and nested BPMN constants", () => {
+        const date = new Date("2026-10-06T01:30:00+03:00");
+        const originalTime = date.getTime();
+        const result = JSON.parse(
+            toJson({
+                due_date: date,
+                scheduled_date: date,
+                constant_value: {date},
+            }),
+        );
+        expect(result).toEqual({
+            due_date: "2026-10-05",
+            scheduled_date: "2026-10-05",
+            constant_value: {date: "2026-10-05"},
+        });
+        expect(date.getTime()).toBe(originalTime);
+    });
+});

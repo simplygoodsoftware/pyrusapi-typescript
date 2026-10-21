@@ -69,6 +69,54 @@ const formRegisterResponse = await client.forms.getTasks(
 const tasks = formRegisterResponse.tasks;
 ```
       
+* Get BPMN settings of a form
+
+```typescript
+const form = await client.forms.get({id: formId});
+const useBpmn = form.use_bpmn_for_new_tasks;
+const bpmnVersion = form.bpmn_version;
+```
+
+`bpmn_version` is the version used for new tasks and is omitted when BPMN routing
+is disabled. Version `0` is valid.
+
+* Get saved BPMN diagram versions of a form
+
+The list includes deleted versions (with `delete_date`) and is sorted by version
+number in descending order. `active_bpmn_version` is absent or `null` when BPMN
+routing for new tasks is turned off.
+
+```typescript
+const versionsResponse = await client.forms.getBpmnVersions({id: formId});
+const versions = versionsResponse.versions;
+const activeVersion = versionsResponse.active_bpmn_version;
+```
+
+* Get a BPMN diagram by version
+
+Version 0 always exists. Before it is saved, `create_date` and `nodes` are absent.
+Date values are returned as `Date` objects. BPMN condition types are numeric;
+other BPMN enums use the API's case-sensitive string values.
+
+```typescript
+const diagramResponse = await client.forms.getBpmnDiagram(
+    formId,
+    activeVersion ?? 0,
+);
+const nodes = diagramResponse.nodes;
+```
+
+The BPMN types follow the [C# client BPMN API](https://github.com/simplygoodsoftware/pyrusapi-csharp/pull/200).
+These endpoints return numeric IDs and case-sensitive API enum values. Bundle API
+routing uses string codes and a different JSON structure; its payloads cannot be
+used directly as BPMN diagram responses.
+
+The server may omit empty arrays, visual properties and false flags. For example,
+use `flow.is_default ?? false` when a boolean value is needed. Subprocess constant
+dates use the shared `fromJson` / `toJson` helpers, just like task dates:
+responses are parsed as `Date`; serialization uses `toDateString` (`YYYY-MM-DD`
+in UTC), preserves strings and `null`, and omits `undefined`.
+
 ## Tasks
 
 * Get task with all comments
@@ -77,6 +125,51 @@ const tasks = formRegisterResponse.tasks;
 const taskResponse = await client.tasks.get({id: 2512});
 const task = taskResponse.task;
 ```
+
+* Read BPMN task state
+
+```typescript
+const {task} = await client.tasks.get({id: taskId});
+const currentNodes = task.bpmn_tokens ?? [];
+if (task.bpmn_version != null && task.form_id != null) {
+    const diagram = await client.forms.getBpmnDiagram(task.form_id, task.bpmn_version);
+}
+```
+
+BPMN tasks include `bpmn_version`, `bpmn_suspended` and optional `bpmn_tokens`.
+Version `0` is valid; parallel branches can have several current nodes. Each token
+contains its ID, node ID and status, and may include a node name, node type,
+participant, expected event type and `event_time` as a `Date`. Ordinary tasks omit
+BPMN fields. Use the task's version to load its diagram: the active form version
+may already have changed.
+
+Comments may contain `bpmn_transitions`. A consumed token has only `token_id`.
+For a suspended transition, `node_id` is where processing stopped; check `status`
+before treating it as a successful transition.
+
+These fields are also available in `BotHookRequest.task`. Their delivery to bot
+webhooks depends on the server's `SendBpmnInfoToWebhooks` feature flag.
+
+* Send BPMN commands
+
+```typescript
+await client.tasks.addComment(taskId, {
+    approval_choice: ApprovalChoice.Approved,
+    bpmn_node_id: nodeId,
+});
+
+await client.tasks.addComment(taskId, {bpmn_resume_processing: true});
+
+await client.tasks.addComment(taskId, {
+    bpmn_token_moves: [{token_id: tokenId, node_id: targetNodeId}],
+});
+```
+
+All commands use `POST /tasks/{id}/comments`. `bpmn_node_id` requires
+`approval_choice` and selects a node when the same person approves several
+parallel branches. Send approval, resume and manual moves in separate comments.
+Resume and manual moves cannot be combined with closing or reopening a task;
+the server validates command combinations and access rights.
 
 * Add task comment
 
