@@ -2,6 +2,8 @@ import {PersonRights} from "../enums/personRights";
 
 export type UpdateBotRequest = {
     id: number;
+    add_supervisors?: number[];
+    remove_supervisors?: number[];
     name?: string;
     hook_url?: string;
     is_enabled?: boolean;

@@ -1,6 +1,7 @@
 export type Bot = {
     id: number;
     name: string;
+    supervisors?: number[];
     external_id?: string;
     is_enabled: boolean;
     fired?: boolean;
